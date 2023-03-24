@@ -61,7 +61,7 @@ public class PokemonServiceImpl implements PokemonService {
         List<Pokemon> listOfPokemon = pokemons.getContent();
         List<PokemonDto> content = listOfPokemon
                 .stream()
-                .map(pokemonDtoMapper)
+                .map(p -> mapToDto(p))
                 .collect(Collectors.toList());
         PokemonResponse pokemonResponse = new PokemonResponse();
         pokemonResponse.setContent(content);
@@ -76,7 +76,7 @@ public class PokemonServiceImpl implements PokemonService {
     public PokemonDto getPokemonById(int id) {
        return pokemonRepository
                .findById(id)
-               .map(pokemonDtoMapper)
+               .map(p -> mapToDto(p))
                .orElseThrow(()-> new PokemonNotFoundException("Pokemon could not be found"));
     }
 

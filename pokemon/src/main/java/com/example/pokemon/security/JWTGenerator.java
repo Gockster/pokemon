@@ -20,12 +20,13 @@ public class JWTGenerator {
 
         String token = Jwts.builder()
                 .setSubject(username)
-                .setIssuedAt(new Date())
+                .setIssuedAt(currentDate)
                 .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.JWT_SECRET)
                 .compact();
         return token;
     }
+
 
     public String getUsernameFromJWT(String token) {
         Claims claims = Jwts.parser()

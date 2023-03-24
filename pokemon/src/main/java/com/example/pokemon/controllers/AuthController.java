@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     private AuthenticationManager authenticationManager;
@@ -42,6 +42,17 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
         this.jwtGenerator = jwtGenerator;
     }
+
+//    @PostMapping("login")
+//    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        loginDto.getUsername(),
+//                        loginDto.getPassword()));
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        String token = jwtGenerator.generateToken(authentication);
+//        return new ResponseEntity<>("new AuthResponseDto(token)", HttpStatus.OK);
+//    }
 
     @PostMapping("login")
     public ResponseEntity<AuthResponseDto> login(@RequestBody LoginDto loginDto){
